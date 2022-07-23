@@ -2,3 +2,11 @@ Git 入門コマンドライン演習80
 
 p.76 git push --set-upstream option がわからない。
 
+SSH 接続で、git push するときに毎回 passphrase を求められるのが面倒だった。
+https://parashuto.com/rriver/tools/github-push-asks-passphrase-every-time
+このページの対処を実行してみたところ、一旦解決したらしい。
+書いてある通りに以下のコマンドを、理解しないまま打った。
+    ssh-add -K ~/.ssh/id_rsa
+
+p.81 git switch <branch name>
+    ブランチの切り替えは、これまでずっと checkout を使っていた。
