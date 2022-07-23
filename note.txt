@@ -44,4 +44,14 @@ p.108
     git branch -D <branch name>
         指定したブランチを削除する（現在いるブランチにマージされていなくても、削除を実行する）
 
-    
+
+p.110
+    git branch -m <branch before> <branch after>
+        ブランチの名前を変更する。
+        <branch before> を省略した場合、現在いるブランチの名前を変更する。
+        すでに同名のブランチが存在する場合、変更は失敗する
+    git branch -M <branch before> <branch after>
+        ブランチの名前を変更する。
+        すでに同名のブランチが存在する場合でも、変更を実行する。
+        前に存在した同名のブランチは、存在が消える。
+
