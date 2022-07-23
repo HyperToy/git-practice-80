@@ -9,4 +9,21 @@ https://parashuto.com/rriver/tools/github-push-asks-passphrase-every-time
     ssh-add -K ~/.ssh/id_rsa
 
 p.81 git switch <branch name>
+    ブランチを、 <branch name> に切り替える。
     ブランチの切り替えは、これまでずっと checkout を使っていた。
+
+p.82 git switch -c <new branch name>
+    ブランチの作成と切り替えを同時に行う。
+    これまでは git checkout -b <branch name> を使っていた。
+
+p.84 git merge <branch name>
+    現在いるブランチに、指定したブランチをマージする。
+
+p.92 git diff --cached / git diff --staged
+    ステージングエリアとローカルリポジトリとの差分を確認することができる。
+    つけるオプションはどちらでもいいらしい（細かい違いがある？）
+
+    git status で表示されるもの
+        Changes to be committed:            ← インデックス（ステージング）エリア
+        Changes not staged for commit:      ← ワーキングツリー
+        Untracked files:                    ←　それ以外
