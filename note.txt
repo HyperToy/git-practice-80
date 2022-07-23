@@ -27,3 +27,8 @@ p.92 git diff --cached / git diff --staged
         Changes to be committed:            ← インデックス（ステージング）エリア
         Changes not staged for commit:      ← ワーキングツリー
         Untracked files:                    ←　それ以外
+
+
+p.93 git log --oneline
+    コミットログを省略して、1コミット1行で表示するオプション。
+    とても便利な一方で、適切なコミットメッセージが求められるなと思った。
