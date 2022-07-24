@@ -66,9 +66,15 @@ p.112
 p.113 practice 20 特定のコミットを取り入れる
     マージする = コミットの集合を取り入れる
     cherry-pick = 特定のコミットのみを取り入れる
+
+    cherry-pick によってコンフリクトが発生した場合、選択肢は2つ
+        - git cherry-pick --abort コマンドで、取り込みを中止する
+        - ファイル編集でコンフリクトを解消した後、 git add コマンドでステージングし、 git cherry-pick --continue コマンドで確定する
+            （エディタが開くので、コミットメッセージを入力する）
     
     git cherry-pick <commit>
     git cherry-pick <start commit>..<end commit>
+        始点として指定したコミットの、次のコミットの変更から取り入れられる。
     git cherry-pick <branch name>
     git cherry-pick --continue
     git cherry-pick --abort
