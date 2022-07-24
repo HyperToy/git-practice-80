@@ -78,3 +78,13 @@ p.113 practice 20 特定のコミットを取り入れる
     git cherry-pick <branch name>
     git cherry-pick --continue
     git cherry-pick --abort
+
+p.117 演習21 コミットからブランチを作成する
+    git branch <branch name> <commit>
+    git switch -c <branch name> <commit>
+        ブランチ名を指定しない場合は、 detouched HEAD という状態になるらしい。（詳細は後述）
+
+        自分の理解が正しければ、編集履歴は、「コミット」を頂点、「コミットとコミットの前後関係」を辺とする有向グラフとして考えられる。
+        それぞれの「コミット」は、「変更差分」もしくは「編集内容」で、コミットが辺で繋がることによって、「編集履歴」を形成している。
+        「ブランチ」は、連なったり分岐したりしている「コミットのツリー」のいずれかの頂点を指している。
+        通常の状態の HEAD は、いずれかのブランチを指している。
