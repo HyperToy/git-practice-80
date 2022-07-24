@@ -64,6 +64,9 @@ p.112
         リモートリポジトリ名とリモートブランチ名を省略した場合、リモートブランチの情報をすべてローカルにコピーする。
 
 p.113 practice 20 特定のコミットを取り入れる
+    マージする = コミットの集合を取り入れる
+    cherry-pick = 特定のコミットのみを取り入れる
+    
     git cherry-pick <commit>
     git cherry-pick <start commit>..<end commit>
     git cherry-pick <branch name>
