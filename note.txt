@@ -144,6 +144,14 @@ p.117 演習21 コミットからブランチを作成する
         git show
         git show <commit>
         git show <commit>:<file name>
-        
+            コミットを指定しない場合は、直前のコミットの変更を出力する
+            --oneline で簡略化できる
 
-
+    p.138 演習30 作業履歴を確認する
+        git reflog
+        git reflog -<作業履歴数>
+        git reflog --pretty
+            コミットだけでなく、マージ、リセットなどの作業も追跡できるらしい。
+            HEAD を移動するような操作を出力している。
+            つまり、 HEAD に関する作業を追跡できる。
+            
