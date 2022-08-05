@@ -187,4 +187,17 @@ p.117 演習21 コミットからブランチを作成する
         git rebase <branch name>
             merge コマンド以外でマージする方法。
             多分、ブランチを切った元の commit (base) を、マージするブランチの commit に付け替えるイメージ。
-    (36)
+    (36) コミットを整理する
+        コミットをまとめる、という作業ができる。
+        git rebase -i <commit>
+        git log --online -<出力数>
+        git rebase --abort
+            競合した際に作業を取りやめる
+        git rebase --continue
+            競合を解消する
+    (37) ファイル編集履歴を確認する
+        git blame <file name>
+            -s : 編集者名、タイムスタンプを省略
+            -L <start>,<end> : 特定の行の変更を確認
+    
+
