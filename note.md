@@ -2,9 +2,17 @@
 
 ## 第7章 基本を学ぼう
 ### 7.1 コマンドの基礎を学ぼう
-- p.76 git push --set-upstream option がわからない。
+- p.76 git push --set-upstream option がわからない。 → わかったかも
+    - 通常、 git push コマンドには、リモートリポジトリ名とリモートブランチ名を引数として指定する必要がある。
+        ```
+        git push origin develop
+        ```
+    - ただし、あるローカルブランチに対して、リモートリポジトリのブランチを「上流ブランチ」として設定しておくと、上記の引数が省略できるようになる。
+        ```
+        git push -u origin develop # origin develop を次回以降省略できる
+        ```
 
-    - SSH 接続で、git push するときに毎回 passphrase を求められるのが面倒だった。
+- SSH 接続で、git push するときに毎回 passphrase を求められるのが面倒だった。
     - [このページ](https://parashuto.com/rriver/tools/github-push-asks-passphrase-every-time) の対処を実行してみたところ、一旦解決したらしい。
     - 書いてある通りに以下のコマンドを、理解しないまま打った。
         - ssh-add -K ~/.ssh/id_rsa
@@ -43,12 +51,12 @@
 # 第3部 Git を使いこなそう
 ## 第9章 習得しよう
 ### 9.1 ブランチの理解を深めよう②
-- p.108 
+- p.108
     - git branch --merged
         - 現在のブランチにマージされているブランチを出力する
     - git branch --no-merged
         - 現在のブランチにマージされていないブランチを出力する
-    - git branch -d \<branch name\> 
+    - git branch -d \<branch name\>
         - 指定したブランチを削除する（現在いるブランチにマージされていない場合は、警告が出て失敗する）
     - git branch -D \<branch name\>
         - 指定したブランチを削除する（現在いるブランチにマージされていなくても、削除を実行する）
@@ -68,8 +76,8 @@
     - git fetch \<remote repository\> \<remote branch\>
         - リモートリポジトリのリモートブランチの情報をローカルにコピーする。
         - リモートリポジトリの名前には、 大抵、origin というエイリアスが張られている。
-    
-    - git fetch 
+
+    - git fetch
         - リモートリポジトリ名とリモートブランチ名を省略した場合、リモートブランチの情報をすべてローカルにコピーする。
 
 - p.113 (20) 特定のコミットを取り入れる
@@ -80,7 +88,7 @@
         - git cherry-pick --abort コマンドで、取り込みを中止する
         - ファイル編集でコンフリクトを解消した後、 git add コマンドでステージングし、 git cherry-pick --continue コマンドで確定する
             - （エディタが開くので、コミットメッセージを入力する）
-    
+
     - git cherry-pick \<commit\>
     - git cherry-pick \<start commit\>..\<end commit\>
         - 始点として指定したコミットの、次のコミットの変更から取り入れられる。
@@ -104,7 +112,7 @@
     - git restore .
         - ステージングされていない状態のワーキングツリーの変更を取り消す。
             - （git add する前の変更を取り消すことができる。）
-    
+
 - p.122 演習23 コミットを修正する
     - git commit --amend
     - git commit --amend -m \<commit message\>
@@ -126,7 +134,7 @@
             - コミットを取り消すと、変更がインデックスエリアに戻る。
         - 「git reset コマンドの --soft オプションは HEAD 飲みを変更し、 HEAD のみを前のコミットに戻しています。」
              - → HEAD の理解が甘いために、うまく飲み込めず。
-    
+
 - p.127 演習26 変更を取り消す④
     - git reset --hard HEAD^
         - 変更前まで戻す
@@ -163,7 +171,7 @@
         - コミットだけでなく、マージ、リセットなどの作業も追跡できるらしい。
         - HEAD を移動するような操作を出力している。
         - つまり、 HEAD に関する作業を追跡できる。
-            
+
 ### 9.4 コマンドを組み合わせよう
 - p.141 演習31 ファイルとディレクトリを削除する
     - git rm \<file name\>
@@ -171,7 +179,7 @@
         - 単純な rm コマンドを使うと、別途 git add が必要になる。
     - git rm -r \<directory name\>
         - ディレクトリを削除・ステージングするには、 -r オプションをつける。
-    
+
 - p.145 演習32 ファイル名とディレウトリ名を変更する
     - git mv \<before file\> \<after file\>
         - ファイル名を変更した上で、「変更(renamed)」という変更をステージングまで行う。
@@ -187,9 +195,9 @@
     - マージを行うことで、ローカルの main ブランチに、ローカルの origin/main ブランチの内容を反映する。
 
     - git fetch と git merge origin/main とを同時に行うコマンドが、 git pull origin main ということになる。
-        
+
 ### 9.5 便利なコマンドを学ぼう
-- (34) 
+- (34)
     - 空のディレクトリを Git で管理する場合、 .keep, .gitkeep などのダミーファイルを作成する場合が多い。
     - Git は、ファイルを追跡するものなので、ディレクトリだけでは管理の対象とならない。
 - (35)
@@ -208,7 +216,99 @@
     - git blame \<file name\>
             -s : 編集者名、タイムスタンプを省略
             -L \<start\>,\<end\> : 特定の行の変更を確認
-    
+
 
 ## 第10章 Git を上手に利用しよう
 ### 10.1 Git 開発を効率的に進めよう
+38. 変更を無視する
+- **.gitignore** というファイルに、追跡しないファイルを指定することができる。
+- ワイルドカード ( * ) を利用することができる。
+    - ワイルドカードは、0文字以上の任意の文字を表す。
+- 四角かっこ ( [, ] ) で、括弧内のいずれか1文字とマッチする。
+- ディレクトリ名を指定すると、ディレクトリごと追跡から外れる。
+- エクスクラメーション ( ! ) をつけると、無視しないファイルとして指定できる。
+- .gitignore ファイルの変更も、コミットしておく必要がある。
+
+39. ローカルでのみ変更を無視する
+    ```
+    git update-index --skip-worktree <file name>
+    git update-index --no-skip-worktree <file name>
+    ```
+- .gitignore は、すでに追跡されているファイルを除外するのには使えない。
+    - 「追跡しているファイルを一時的にローカルでだけ変更したい」場合に使えない。
+- git update-index コマンドに、 --skip-worktree オプションをつけると、一時的にファイルが追跡されなくなる。
+- --no-skip-worktree オプションで、再度追跡できる。
+
+40. エイリアスを作成する
+    ```
+    git config --global alias.<短縮コマンド> <コマンド>
+    ```
+- 「エイリアス」は「別名」「通称」などといった意味を持つ言葉。
+- 例えば、 git branch を git br として登録する場合、以下
+    ```
+    git config --global alias.br branch
+    ```
+- 設定した内容は、 ~/.gitconfig に保存されている。 cat コマンドで確認できる。
+    ```
+    cat ~/.gitconfig
+    ```
+
+### 10.2 Git の理解を深めよう
+41. リモートリポジトリを登録する
+- 既存のローカルリポジトリに対して、github 上で作成したリポジトリをリモートリポジトリとして登録するコマンド（復習）
+    ```
+    git remote add <リモートリポジトリ名> <リポジトリのURL>
+    ```
+- 上の <リモートリポジトリ名> は、慣習的に origin とされることが多い。
+- origin 以外にも、同様のコマンドでリモートリポジトリのエイリアスを追加することができる。
+- 確認する場合は以下のコマンド。
+    ```
+    git remote -v
+    ```
+    - -v オプションで、URL つきで確認できる。
+
+42. リポジトリ名を修正する
+    ```
+    git remote set-url <リモート名> <新しいリポジトリのURL>
+    git remote -v
+    ```
+- github 上でリポジトリ名を変更した場合でも、ローカルでは以前のURLが残っている。
+    - git push を叩いた場合、警告が出る。
+- 警告を解消するために、上記のコマンドで、登録しているリポジトリ名を設定し直す。
+
+43. ヘッドを理解する
+- HEAD とは、今いるブランチを参照するもの（指差しているもの、というイメージかな？）
+- HEAD には、いくつかの種類がある。
+    - HEAD
+    - FETCH_HEAD
+    - ORIG_HEAD
+    - MERGE_HEAD
+- HEAD の情報は .git ディレクトリに保存されている。
+    ```
+    $ cat .git/HEAD
+    ref: refs/heads/main
+    ```
+    - main ブランチを指していることが確認できる。
+    ```
+    $ ls .git/ | grep HEAD
+    FETCH_HEAD
+    HEAD
+    ORIG_HEAD
+    REBASE_HEAD
+    ```
+    - いくつかの種類があることも確認できる。
+    ```
+    $ cat .git/refs/heads/main
+    cd048c4ec42ad4fccd760d73cd30e2ae9c3f89fd
+    ```
+    - HEAD の参照先として出力されたファイルの中身を確認すると、コミットIDが確認できる。
+    ```
+    $ git log -1
+    commit cd048c4ec42ad4fccd760d73cd30e2ae9c3f89fd (HEAD -> main)
+    Author: Ryohey <ryohey.trumpet+tech@gmail.com>
+    Date:   Sun Aug 7 18:06:51 2022 +0900
+        [update] note markdownize
+    ```
+    - 確かに一致している。
+    - ブランチは、最新のコミットを参照している。
+
