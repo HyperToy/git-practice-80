@@ -213,9 +213,9 @@
     - git rebase --continue
         - 競合を解消する
 - (37) ファイル編集履歴を確認する
-    - git blame \<file name\>
-            -s : 編集者名、タイムスタンプを省略
-            -L \<start\>,\<end\> : 特定の行の変更を確認
+    - git blame \<file name>
+        - -s : 編集者名、タイムスタンプを省略
+        - -L \<start>,\<end> : 特定の行の変更を確認
 
 
 ## 第10章 Git を上手に利用しよう
@@ -332,3 +332,84 @@
 - git cat-file コマンドに -p オプションをつけて、引数にオブジェクトのハッシュ値を渡すことで、そのオブジェクトの「中身」を確認できる。
     - commit オブジェクトの中身は、tree, parent, author, committer, commit message など
         - tree の種類は tree, parent の種類は commit だった。
+
+# 第4部 チーム開発をしてみよう
+## 第11章 チーム開発の基本を学ぼう
+### 11.1 ブランチの理解を深めよう③
+- 主に git-flow の解説
+45. デフォルトブランチの変更
+46. ブランチの命名規則
+47. コードレビュー
+
+### 11.2 GitHub を使いこなそう
+48. イシューの利用
+49. プルリクエスト
+
+
+### 11.3 コミットをまとめよう
+```
+git merge --squash develop
+```
+GitHub 上でまとめる方法もある
+
+### 11.4 OSS　活動に取り組もう
+この辺は、やるとなってわからなくなった時に読めばよさそう。
+
+## 第12章　チーム開発を効率的に進めよう
+### 12.1 リリースしよう
+54. GitHub wiki について
+55. タグ
+```
+# タグを確認する
+git tag
+
+# コミットにタグをつける (lightweight tag)
+git tag <tag name> <commit>
+
+# コミットにタグをつける (annotated tag, -a オプションを利用) 
+git tag <tag name> <commit> -a -m "message"
+
+# リモートリポジトリにタグを反映する
+git push origin --tags
+
+# 特定のタグをリモートリポジトリに反映する
+git push origin <tag name>
+
+# タグの中身を確認する
+git show <tag name>
+
+# タグの削除
+git tag -d <tag name>
+```
+
+56. リリースノート
+- [セマンティックバージョニング](https://semver.org/lang/ja/)
+
+### 12.2 テストを作ろう
+57. GitHub Actions 
+58. 
+59. 
+60. 
+61. 
+62. 
+63. 
+
+64. デタッチドヘッドについて
+- reflog コマンドは、 HEAD の作業履歴を記録している。
+
+
+# 第5部 演習で理解を深めよう
+## 第13章 基本問題に取り組もう
+65. stash
+66. clean
+    ```
+    # git で追跡されていないファイルを確認 (-n オプション)
+    git clean -n
+
+    # git で追跡されていないファイルを削除 (-f オプション)
+    git clean -f
+
+    # git で追跡されていないディレクトリを削除 (-fd オプション)
+    git clean -fd
+    ```
+
