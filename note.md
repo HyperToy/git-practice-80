@@ -412,4 +412,41 @@ git tag -d <tag name>
     # git で追跡されていないディレクトリを削除 (-fd オプション)
     git clean -fd
     ```
+67. add, commit
+    ```
+    # 追跡されているファイルのみステージング (-u オプション)
+    git add -u
+
+    # ステージングをスキップしてコミット (-a オプション)
+    git commit -am "commit message"
+    ```
+
+68. rm
+    ```
+    # すでに追跡しているファイルに .gitignore を適用する (--cached オプション)
+    git rm --cached
+    ```
+
+69. 
+70. 
+
+### 13.2
+71. 
+72. 
+73. 
+
+## 第14章 応用問題に取り組もう
+### 14.1
+74. 
+75. 
+76. 
+77. 
+78. 
+79. マージされたブランチを削除する
+```
+# パイプで引数として渡して、マッチするブランチを一括削除
+git branch --merged | grep feature | xargs git branch -d
+```
+80. 
+
 
